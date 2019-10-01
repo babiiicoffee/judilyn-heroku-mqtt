@@ -15,9 +15,8 @@ $('#btn-connect').click(function(){
 		$("#status").removeClass("alert-warning");
 		$("#status").addClass("alert-secondary");
 		Swal.fire({
-			position: 'top-end',
 			type: 'success',
-			title: 'Your successfully connect to the broker!',
+			title: 'Your successfully connected!',
 			showConfirmButton: false,
 			timer: 1500
 		  })
@@ -26,9 +25,9 @@ $('#btn-connect').click(function(){
 	client.on("message", function (topic, payload) {
 		console.log([topic, payload].join(": "));
 		var row = $("<tr>");
-		$("<td>").text(topic).appendTo($(row));
-		$("<td>").text(payload).appendTo($(row));
-		$("<td>").text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
+		$('<td style="color:white">').text(topic).appendTo($(row));
+		$('<td style="color:white">').text(payload).appendTo($(row));
+		$('<td style="color:white">').text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
 		$("#tbl-body").append($(row));
 
   })
@@ -67,7 +66,7 @@ $('#btn-connect').click(function(){
 			Swal.fire({
 			  type: 'error',
 			  title: 'Oops...',
-			  text: 'Please provide inputs!',
+			  text: 'you have nothing to publish!',
 			});
 		}
 		else { 
@@ -76,15 +75,15 @@ $('#btn-connect').click(function(){
 					Swal.fire({
 						type: 'error',
 						title: 'Oops...',
-						text: 'An error occurs!',
+						text: 'Error!',
 					  });
 				} else {
 					console.log("published")
 					Swal.fire('Published successfully!')
 					var row = $("<tr>");
-					$("<td>").text(topic).appendTo($(row));
-					$("<td>").text(payload).appendTo($(row));
-					$("<td>").text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
+					$('<td style="color:white">').text(topic).appendTo($(row));
+					$('<td style="color:white">').text(payload).appendTo($(row));
+					$('<td style="color:white">').text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
 					$("#tbl-body-pub").append($(row));
 				}
 			});
@@ -104,8 +103,8 @@ $('#btn-connect').click(function(){
 					});
 			} else {
 				var row = $("<tr>").attr("id", "mysub");
-				$("<td>").text(topic).appendTo($(row));
-				$("<td>").text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
+				$('<td style="color:white">').text(topic).appendTo($(row));
+				$('<td style="color:white">').text(moment().format('MMMM Do YYYY, h:mm:ss a')).appendTo($(row));
 				$("#tbl-body-sub").append($(row));
 				Swal.fire('Subscribed successfully!');
 			}
